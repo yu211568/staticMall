@@ -56,7 +56,11 @@
     <!-- banner -->
     <div class="banner">
         <div class="wrapper">
-            <ul>
+            <ul class="imgList">
+                <li><img src="./uploads/banner1.png" alt=""></li>
+                <li><img src="./uploads/clothes1.png" alt=""></li>
+                <li><img src="./uploads/fresh1.png" alt=""></li>
+                <li><img src="./uploads/goods1.png" alt=""></li>
                 <li><img src="./uploads/banner1.png" alt=""></li>
             </ul>
             <!-- 侧边导航栏 -->
@@ -79,7 +83,6 @@
             <a href="#" class="next"></a>
             <!-- 圆点 -->
             <ol>
-                <li></li>
                 <li></li>
                 <li></li>
                 <li></li>
@@ -712,6 +715,44 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const imgList = document.querySelector('.imgList')
+        const prev = document.querySelector('.prev')
+        const next = document.querySelector('.next')
+        const wrapper = document.querySelector('.banner .wrapper')
+        let left = 0
+        let timer
+        function run() {
+            if (left <= -4960) {
+                left = 0
+            }
+            imgList.style.marginLeft = left + 'px'
+            let n = (left % 1240 === 0) ? 1200 : 10
+            left -= 10
+            timer = setTimeout(run, n)
+        }
+        run()
+        function imgchange(n) {
+            let lt = -(n * 1240)
+            imgList.style.marginLeft = lt + 'px'
+            left = lt
+        }
+        prev.addEventListener('click', () => {
+            let prevgo = Math.floor(-left / 1240) - 1
+            if (prevgo === -1) {
+                prevgo = 3
+            }
+            imgchange(prevgo)
+        })
+        next.addEventListener('click', () => {
+            let nextgo = Math.floor(-left / 1240) + 1
+            if (nextgo === 4) {
+                nextgo = 0
+            }
+            imgchange(nextgo)
+        })
+    </script>
 </body>
 
 </html>
