@@ -1,0 +1,1 @@
+# staticMall
